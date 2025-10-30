@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import DirectoryOpenFileIcon from '../../public/icons/directory_open_file.png';
+import DirectoryOpenFileIcon from '../../public/icons/desktop/directory_open_file.png';
 import DesktopIcon from './DesktopIcon';
 import IntroWindow from './IntroWindow';
 
@@ -42,7 +42,6 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
             id={id}
             title={title}
             icon={icon.src}
-            path={path}
             onClick={() => openWindow(path)}
           />
         ))}

@@ -1,4 +1,10 @@
 import WindowLayout from './WindowLayout';
+import StackIcon from './StackIcon';
+import ReactIcon from '../../public/icons/stacks/react_icon.svg';
+import NextIcon from '../../public/icons/stacks/next_icon.svg';
+import NestIcon from '../../public/icons/stacks/nestJS_icon.svg';
+import NodeIcon from '../../public/icons/stacks/nodejs.svg';
+import EslintIcon from '../../public/icons/stacks/eslint_icon.svg';
 
 const IntroWindow = () => {
   const handleGithubButton = () => {
@@ -18,10 +24,25 @@ const IntroWindow = () => {
         <p className="text-lg text-black">
           I&apos;m junior developer, interested in web development.
         </p>
-        <span className="text-sm text-gray-500">Show me more</span>
-        <section className="flex flex-row gap-2">
-          <button onClick={handleGithubButton}>Github</button>
-          <button onClick={handleLinkedinButton}>Linkedin</button>
+        {/* Stacks Section */}
+        <section className="flex flex-col gap-2">
+          <span className="text-sm text-gray-500">Stacks</span>
+          <div className="flex flex-row gap-2">
+            <StackIcon src={ReactIcon} alt="React" />
+            <StackIcon src={NextIcon} alt="Next.js" />
+            <StackIcon src={NestIcon} alt="Nest.js" />
+            <StackIcon src={NodeIcon} alt="Node.js" />
+            <StackIcon src={EslintIcon} alt="Eslint" />
+          </div>
+        </section>
+
+        {/* Links Section */}
+        <section className="flex flex-col gap-2">
+          <span className="text-sm text-gray-500">Show me more</span>
+          <div className="flex flex-row gap-2">
+            <button onClick={handleGithubButton}>Github</button>
+            <button onClick={handleLinkedinButton}>Linkedin</button>
+          </div>
         </section>
       </div>
     </WindowLayout>
