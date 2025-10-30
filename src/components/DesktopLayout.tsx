@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import DirectoryOpenFileIcon from '../../public/icons/directory_open_file.png';
+import DesktopIcon from './DesktopIcon';
 
 interface DesktopLayoutProps {
   children?: React.ReactNode;
@@ -14,7 +15,12 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
   const [startMenuOpen, setStartMenuOpen] = useState(false);
 
   const desktopIcons = [
-    { id: 'portfolio', title: '내 포트폴리오', icon: DirectoryOpenFileIcon, path: '/desktop/portfolio' },
+    {
+      id: 'portfolio',
+      title: '내 포트폴리오',
+      icon: DirectoryOpenFileIcon,
+      path: '/desktop/portfolio',
+    },
     { id: 'blog', title: '기술 블로그', icon: DirectoryOpenFileIcon, path: '/desktop/blog' },
     { id: 'about', title: '소개', icon: DirectoryOpenFileIcon, path: '/desktop/about' },
     { id: 'contact', title: '연락처', icon: DirectoryOpenFileIcon, path: '/desktop/contact' },
@@ -25,22 +31,21 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
   };
 
   return (
-    <div className="relative h-screen w-screen overflow-hidden" style={{ backgroundColor: '#008080' }}>
+    <div
+      className="relative h-screen w-screen overflow-hidden"
+      style={{ backgroundColor: '#008080' }}
+    >
       {/* Desktop Icons */}
       <div className="absolute top-4 left-4 flex flex-col gap-8 z-0">
-        {desktopIcons.map((icon) => (
-          <div
-            key={icon.id}
-            onClick={() => openWindow(icon.path)}
-            className="cursor-pointer"
-          >
-            <div className="flex flex-col items-center justify-center w-20">
-              <Image src={icon.icon.src} alt={icon.title} width={48} height={48} />
-              <span className="text-xs text-center leading-tight drop-shadow-[1px_1px_0_black] text-white">
-                {icon.title}
-              </span>
-            </div>
-          </div>
+        {desktopIcons.map(({ id, title, icon, path }) => (
+          <DesktopIcon
+            key={id}
+            id={id}
+            title={title}
+            icon={icon.src}
+            path={path}
+            onClick={() => openWindow(path)}
+          />
         ))}
       </div>
 
@@ -56,7 +61,7 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
           style={{
             background: startMenuOpen
               ? 'linear-gradient(to bottom, #c0c0c0, #dfdfdf)'
-              : 'linear-gradient(to bottom, #dfdfdf, #c0c0c0)'
+              : 'linear-gradient(to bottom, #dfdfdf, #c0c0c0)',
           }}
         >
           <div className="w-4 h-4 flex items-center justify-center">
@@ -86,13 +91,8 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
       {/* Start Menu */}
       {startMenuOpen && (
         <>
-          <div
-            className="fixed inset-0 z-40"
-            onClick={() => setStartMenuOpen(false)}
-          ></div>
-          <div
-            className="window absolute bottom-10 left-1 w-64 z-50"
-          >
+          <div className="fixed inset-0 z-40" onClick={() => setStartMenuOpen(false)}></div>
+          <div className="window absolute bottom-10 left-1 w-64 z-50">
             <div className="window-body p-0">
               <div className="flex">
                 <div className="bg-[#808080] w-8 flex items-end pb-2 px-1">
