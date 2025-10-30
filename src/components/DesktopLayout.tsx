@@ -6,6 +6,8 @@ import Image from 'next/image';
 import DirectoryOpenFileIcon from '../../public/icons/desktop/directory_open_file.png';
 import DesktopIcon from './DesktopIcon';
 import IntroWindow from './IntroWindow';
+import SystemClock from './SystemClock';
+import CalendarWindow from './CalendarWindow';
 
 const desktopIcons = [
   {
@@ -24,9 +26,14 @@ interface DesktopLayoutProps {
 export default function DesktopLayout({ children }: DesktopLayoutProps) {
   const router = useRouter();
   const [startMenuOpen, setStartMenuOpen] = useState(false);
+  const [calendarOpen, setCalendarOpen] = useState(false);
 
   const openWindow = (path: string) => {
     router.push(path);
+  };
+
+  const handleCalendarToggle = () => {
+    setCalendarOpen(!calendarOpen);
   };
 
   return (
@@ -74,12 +81,19 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
         <div className="flex-1"></div>
 
         {/* System Tray */}
-        <div className="flex items-center gap-2 border-2 border-t-[#808080] border-l-[#808080] border-b-white border-r-white px-2 h-8">
-          <span className="text-xs">
-            {new Date().toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' })}
-          </span>
-        </div>
+        <SystemClock onCalendarToggle={handleCalendarToggle} />
       </div>
+
+      {/* Calendar Window */}
+      {calendarOpen && (
+        <>
+          <div
+            className="fixed inset-0 z-40"
+            onClick={() => setCalendarOpen(false)}
+          ></div>
+          <CalendarWindow onClose={() => setCalendarOpen(false)} />
+        </>
+      )}
 
       {/* Start Menu */}
       {startMenuOpen && (

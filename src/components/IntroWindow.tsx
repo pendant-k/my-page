@@ -6,6 +6,9 @@ import NestIcon from '../../public/icons/stacks/nestJS_icon.svg';
 import NodeIcon from '../../public/icons/stacks/nodejs.svg';
 import EslintIcon from '../../public/icons/stacks/eslint_icon.svg';
 
+// 나를 소개하는 창
+// 이름, 간단한 소개 (한 눈에 들어오도록)
+
 const IntroWindow = () => {
   const handleGithubButton = () => {
     window.open('https://github.com/pendant-k', '_blank');
