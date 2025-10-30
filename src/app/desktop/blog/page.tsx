@@ -17,24 +17,21 @@ export default function BlogPage() {
   ];
 
   return (
-    <WindowLayout title="기술 블로그">
-      <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">기술 블로그</h1>
+    <WindowLayout title="Blog">
+      <div>
+        <h2 className="font-bold">Blog</h2>
 
-      <div className="space-y-4">
-        {blogPosts.map((post) => (
-          <div key={post.id} className="window">
-            <div className="title-bar">
-              <div className="title-bar-text">{post.title}</div>
+        <div className="space-y-4">
+          {blogPosts.map((post) => (
+            <div key={post.id} className="window">
+              <div className="window-body">
+                <p className="text-xs text-gray-600 mb-2">{post.date}</p>
+                <p>{post.excerpt}</p>
+                <button className="mt-2">더 보기...</button>
+              </div>
             </div>
-            <div className="window-body">
-              <p className="text-xs text-gray-600 mb-2">{post.date}</p>
-              <p>{post.excerpt}</p>
-              <button className="mt-2">더 보기...</button>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
       </div>
     </WindowLayout>
   );
