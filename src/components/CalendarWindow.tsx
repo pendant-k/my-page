@@ -32,11 +32,6 @@ export default function CalendarWindow({ onClose }: CalendarWindowProps) {
     calendarDays.push(day);
   }
 
-  const monthName = now.toLocaleDateString('ko-KR', {
-    year: 'numeric',
-    month: 'long',
-  });
-
   const weekDays = ['일', '월', '화', '수', '목', '금', '토'];
 
   return (
