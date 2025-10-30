@@ -15,8 +15,6 @@ const desktopIcons = [
     path: '/desktop/portfolio',
   },
   { id: 'blog', title: 'Blog', icon: DirectoryOpenFileIcon, path: '/desktop/blog' },
-  { id: 'about', title: 'About', icon: DirectoryOpenFileIcon, path: '/desktop/about' },
-  { id: 'contact', title: 'Contact', icon: DirectoryOpenFileIcon, path: '/desktop/contact' },
 ];
 
 interface DesktopLayoutProps {
