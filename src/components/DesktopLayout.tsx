@@ -3,8 +3,22 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import DirectoryOpenFileIcon from '../../public/icons/directory_open_file.png';
+import DirectoryOpenFileIcon from '../../public/icons/desktop/directory_open_file.png';
 import DesktopIcon from './DesktopIcon';
+import IntroWindow from './IntroWindow';
+import SystemClock from './SystemClock';
+import CalendarWindow from './CalendarWindow';
+import WindowsLogoIcon from '../../public/icons/desktop/windows_logo.png';
+
+const desktopIcons = [
+  {
+    id: 'portfolio',
+    title: 'Portfolio',
+    icon: DirectoryOpenFileIcon,
+    path: '/desktop/portfolio',
+  },
+  { id: 'blog', title: 'Blog', icon: DirectoryOpenFileIcon, path: '/desktop/blog' },
+];
 
 interface DesktopLayoutProps {
   children?: React.ReactNode;
@@ -13,21 +27,14 @@ interface DesktopLayoutProps {
 export default function DesktopLayout({ children }: DesktopLayoutProps) {
   const router = useRouter();
   const [startMenuOpen, setStartMenuOpen] = useState(false);
-
-  const desktopIcons = [
-    {
-      id: 'portfolio',
-      title: '내 포트폴리오',
-      icon: DirectoryOpenFileIcon,
-      path: '/desktop/portfolio',
-    },
-    { id: 'blog', title: '기술 블로그', icon: DirectoryOpenFileIcon, path: '/desktop/blog' },
-    { id: 'about', title: '소개', icon: DirectoryOpenFileIcon, path: '/desktop/about' },
-    { id: 'contact', title: '연락처', icon: DirectoryOpenFileIcon, path: '/desktop/contact' },
-  ];
+  const [calendarOpen, setCalendarOpen] = useState(false);
 
   const openWindow = (path: string) => {
     router.push(path);
+  };
+
+  const handleCalendarToggle = () => {
+    setCalendarOpen(!calendarOpen);
   };
 
   return (
@@ -43,17 +50,17 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
             id={id}
             title={title}
             icon={icon.src}
-            path={path}
             onClick={() => openWindow(path)}
           />
         ))}
       </div>
+      <IntroWindow />
 
       {/* Window Content */}
       {children}
 
       {/* Taskbar */}
-      <div className="absolute bottom-0 left-0 right-0 h-10 bg-[#c0c0c0] border-t-2 border-white flex items-center px-1 shadow-[inset_1px_1px_0_white,inset_-1px_-1px_0_#808080] z-50">
+      <div className="absolute bottom-0 left-0 right-0 h-10 bg-[#c0c0c0] border-t-2 border-white flex items-center px-1 z-50">
         {/* Start Button */}
         <button
           className="flex items-center gap-1 px-2 h-8 font-bold text-sm border-2 border-[#dfdfdf] border-t-white border-l-white border-b-[#808080] border-r-[#808080] hover:border-[#000080] active:border-t-[#808080] active:border-l-[#808080] active:border-b-white active:border-r-white"
@@ -64,13 +71,7 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
               : 'linear-gradient(to bottom, #dfdfdf, #c0c0c0)',
           }}
         >
-          <div className="w-4 h-4 flex items-center justify-center">
-            <img
-              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23ff0000' d='M0 0h8v8H0z'/%3E%3Cpath fill='%2300ff00' d='M8 0h8v8H8z'/%3E%3Cpath fill='%230000ff' d='M0 8h8v8H0z'/%3E%3Cpath fill='%23ffff00' d='M8 8h8v8H8z'/%3E%3C/svg%3E"
-              alt="Start"
-              className="w-full h-full"
-            />
-          </div>
+          <Image src={WindowsLogoIcon} alt="windows logo" width={16} height={16} />
           <span>Start</span>
         </button>
 
@@ -81,12 +82,16 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
         <div className="flex-1"></div>
 
         {/* System Tray */}
-        <div className="flex items-center gap-2 border-2 border-t-[#808080] border-l-[#808080] border-b-white border-r-white px-2 h-8">
-          <span className="text-xs">
-            {new Date().toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' })}
-          </span>
-        </div>
+        <SystemClock onCalendarToggle={handleCalendarToggle} />
       </div>
+
+      {/* Calendar Window */}
+      {calendarOpen && (
+        <>
+          <div className="fixed inset-0 z-40" onClick={() => setCalendarOpen(false)}></div>
+          <CalendarWindow onClose={() => setCalendarOpen(false)} />
+        </>
+      )}
 
       {/* Start Menu */}
       {startMenuOpen && (

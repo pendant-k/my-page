@@ -4,11 +4,10 @@ interface DesktopIconProps {
   id: string;
   title: string;
   icon: string;
-  path: string;
   onClick: () => void;
 }
 
-const DesktopIcon = ({ id, title, icon, path, onClick }: DesktopIconProps) => {
+const DesktopIcon = ({ id, title, icon, onClick }: DesktopIconProps) => {
   return (
     <div key={id} className="cursor-pointer" onClick={onClick}>
       <div className="flex flex-col items-center justify-center w-20">
