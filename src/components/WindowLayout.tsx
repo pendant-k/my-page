@@ -69,7 +69,7 @@ export default function WindowLayout({ title, children }: WindowLayoutProps) {
       }}
     >
         <div className="title-bar cursor-move" onMouseDown={handleMouseDown}>
-          <div className="title-bar-text">{title}</div>
+          <div className="title-bar-text ">{title}</div>
           <div className="title-bar-controls">
             <button aria-label="Minimize" disabled></button>
             <button aria-label="Maximize" disabled></button>
