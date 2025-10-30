@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from 'react';
 import WindowLayout from './WindowLayout';
 import StackIcon from './StackIcon';
 import ReactIcon from '../../public/icons/stacks/react_icon.svg';
@@ -10,6 +13,13 @@ import EslintIcon from '../../public/icons/stacks/eslint_icon.svg';
 // 이름, 간단한 소개 (한 눈에 들어오도록)
 
 const IntroWindow = () => {
+  // useState의 lazy initialization을 사용하여 초기값 계산
+  const [initialX] = useState(() => {
+    // 서버 사이드에서는 기본값, 클라이언트에서는 계산된 값
+    if (typeof window === 'undefined') return 100;
+    return Math.max(100, window.innerWidth - 1000);
+  });
+
   const handleGithubButton = () => {
     window.open('https://github.com/pendant-k', '_blank');
   };
@@ -19,7 +29,7 @@ const IntroWindow = () => {
   return (
     <WindowLayout
       title="Intro"
-      initialPosition={{ x: window.innerWidth - 1000, y: 100 }}
+      initialPosition={{ x: initialX, y: 100 }}
       enableWindowControls={false}
     >
       <div className="flex flex-col gap-2">
