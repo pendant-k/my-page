@@ -199,7 +199,7 @@ export default function WindowLayout({
         className={enableWindowControls && !isMaximized ? 'title-bar cursor-move' : 'title-bar'}
         onMouseDown={handleMouseDown}
       >
-        <div className="title-bar-text ">{title}</div>
+        <div className="title-bar-text text-[14px]">{title}</div>
         <div className="title-bar-controls">
           <button aria-label="Minimize" disabled></button>
           <button

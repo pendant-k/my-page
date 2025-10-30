@@ -32,17 +32,12 @@ export default function CalendarWindow({ onClose }: CalendarWindowProps) {
     calendarDays.push(day);
   }
 
-  const monthName = now.toLocaleDateString('ko-KR', {
-    year: 'numeric',
-    month: 'long',
-  });
-
   const weekDays = ['일', '월', '화', '수', '목', '금', '토'];
 
   return (
-    <div className="window absolute bottom-12 right-1 w-64 z-[100]" style={{ zIndex: 100 }}>
+    <div className="window absolute bottom-12 right-1 w-64 z-100">
       <div className="title-bar">
-        <div className="title-bar-text">{monthName}</div>
+        <div className="title-bar-text">달력</div>
         <div className="title-bar-controls">
           <button aria-label="Close" onClick={onClose}></button>
         </div>

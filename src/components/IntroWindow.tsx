@@ -28,18 +28,27 @@ const IntroWindow = () => {
   };
   return (
     <WindowLayout
-      title="Intro"
+      title="소개글"
       initialPosition={{ x: initialX, y: 100 }}
       enableWindowControls={false}
     >
-      <div className="flex flex-col gap-2">
-        <h2 className="font-bold text-black">Hello, I&apos;m Donghan Kim</h2>
-        <p className="text-lg text-black">
-          I&apos;m junior developer, interested in web development.
-        </p>
+      <div className="flex flex-col gap-8">
+        <section className="flex flex-col gap-2">
+          <h2 className="font-bold text-black">주도적인 개발자 김동한입니다</h2>
+          <div className="flex flex-col gap-8 text-lg text-black">
+            <p className="whitespace-pre-line">
+              웹 및 모바일 애플리케이션을 주로 개발하며,{'\n'}
+              <strong>함께 일하기 좋은 코드</strong>를 추구합니다.
+            </p>
+            <p className="whitespace-pre-line">
+              그리 대단한 사람은 아니지만,{'\n'}어제도 코드를 작성했고,{'\n'}오늘도 코드를
+              작성했습니다.
+            </p>
+          </div>
+        </section>
         {/* Stacks Section */}
         <section className="flex flex-col gap-2">
-          <span className="text-sm text-gray-500">Stacks</span>
+          <span className="text-[14px] text-gray-500">기술 스택</span>
           <div className="flex flex-row gap-2">
             <StackIcon src={ReactIcon} alt="React" />
             <StackIcon src={NextIcon} alt="Next.js" />
@@ -51,7 +60,7 @@ const IntroWindow = () => {
 
         {/* Links Section */}
         <section className="flex flex-col gap-2">
-          <span className="text-sm text-gray-500">Show me more</span>
+          <span className="text-[14px] text-gray-500">기타 링크</span>
           <div className="flex flex-row gap-2">
             <button onClick={handleGithubButton}>Github</button>
             <button onClick={handleLinkedinButton}>Linkedin</button>
