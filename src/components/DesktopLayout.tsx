@@ -8,6 +8,7 @@ import DesktopIcon from './DesktopIcon';
 import IntroWindow from './IntroWindow';
 import SystemClock from './SystemClock';
 import CalendarWindow from './CalendarWindow';
+import WindowsLogoIcon from '../../public/icons/desktop/windows_logo.png';
 
 const desktopIcons = [
   {
@@ -70,7 +71,7 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
               : 'linear-gradient(to bottom, #dfdfdf, #c0c0c0)',
           }}
         >
-          <div className="w-4 h-4 flex items-center justify-center"></div>
+          <Image src={WindowsLogoIcon} alt="windows logo" width={16} height={16} />
           <span>Start</span>
         </button>
 
@@ -87,10 +88,7 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
       {/* Calendar Window */}
       {calendarOpen && (
         <>
-          <div
-            className="fixed inset-0 z-40"
-            onClick={() => setCalendarOpen(false)}
-          ></div>
+          <div className="fixed inset-0 z-40" onClick={() => setCalendarOpen(false)}></div>
           <CalendarWindow onClose={() => setCalendarOpen(false)} />
         </>
       )}
